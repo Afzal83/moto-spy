@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#388E3C</color>
+    <color name="colorPrimaryDark">#4CAF50</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="splashBackgroundColor">#327fbe</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#008000</color>
+    <color name="yellow">#FFFF00</color>
+    <color name= "perple">#402D4C</color>
+    <color name= "deep_perple">#251c2c</color>
+
+    <color name="green_tpn_50">#80008000</color>
+    <color name="green_tpn_30">#4D008000</color>
+
+
+    <color name="drawer_bg_tnp_30">#4d0081a4</color>
+
+    <color name="statusBarColor">#4169E1</color>
+    <color name="toolBarColor">#4682B4</color>
+
+    <color name="color_0km">#000000</color>
+
+</resources>

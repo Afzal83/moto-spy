@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">SpyMoto</string>
+    <string name="title_activity_maps">Map</string>
+
+
+    <string name="network_error">Network Error</string>
+    <string name="check_your_internet">Please Check Your Internet Connection</string>
+
+    <string name="loading">Loading ...</string>
+    <string name="please_wait">Please wait </string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="contact_us">Contact_us</string>
+
+
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="about_us">Moto tracker is fully featured
+                            vehicle tracking service provider.Our aim is to Provide
+                            User with fully featued and comprehensive GPS tracking service .</string>
+
+
+    <string name="service_of">We are a service of Geon Technologies Ltd.</string>
+
+    <string name="contact_one">123456789</string>
+    <string name="contact_two">123456789</string>
+    <string name="customer_support">123456789</string>
+
+
+    <string name="select_a_vehicle">Select a Vehicle</string>
+
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="current_location">Location</string>
+    <string name="live_tracking">Tracking</string>
+    <string name="show_shistory">History</string>
+    <string name="clear_map">Clear</string>
+
+
+    <string-array name="select_duration_array">
+        <item>Last 1 hour</item>
+        <item>Last 2 hours</item>
+        <item>Last 6 hours</item>
+        <item>Last 12 hours</item>
+        <item>Last 24 hours</item>
+        <item>Today</item>
+        <item>Yesterday</item>
+        <item>Custom</item>
+    </string-array>
+
+
+    <string-array name="place_type">
+        <item>airport</item>
+        <item>atm</item>
+        <item>bank</item>
+        <item>bus_station</item>
+        <item>church</item>
+        <item>doctor</item>
+        <item>hospital</item>
+        <item>mosque</item>
+        <item>movie_theater</item>
+        <item>hindu_temple</item>
+        <item>restaurant</item>
+        <item>home_goods_store</item>
+    </string-array>
+
+    <string-array name="place_type_name">
+        <item>Airport</item>
+        <item>ATM</item>
+        <item>Bank</item>
+        <item>Bus Station</item>
+        <item>Church</item>
+        <item>Doctor</item>
+        <item>Hospital</item>
+        <item>Mosque</item>
+        <item>Movie Theater</item>
+        <item>Hindu Temple</item>
+        <item>Restaurant</item>
+    </string-array>
+</resources>

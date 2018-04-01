@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:background="#efeff7"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/vehiclNumer_select_vehicle_fr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="#fff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/listview_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="#edecec"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+        <!-- Editext for Search -->
+
+        <EditText android:id="@+id/inputSearch_select_vehicle_fr"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/edit_text_style_for_vehicle_selection"
+            android:hint="Search Vehicle..."
+            android:focusable="true"
+            android:inputType="textVisiblePassword"/>
+        <!-- List View -->
+        <ListView
+            android:id="@+id/listview_select_vehicle_fr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/listview_rounded_bg"
+            android:divider="@color/white"
+            android:dividerHeight="1dp"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:background="#efeff7"
+        android:gravity="center">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#00000000"
+            android:focusable="true"/>
+    </LinearLayout>
+</LinearLayout>
