@@ -35,13 +35,13 @@
                     android:id="@+id/select_vehicle"
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/nav_select_vehicle_icon"/>
+                    android:background="@drawable/ic_action_drive_eta"/>
                 <LinearLayout
                     android:id="@+id/selected_vehicle_container"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:background="#e6e6e6"
+                    android:background="@drawable/selected_vehicle_bg"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:visibility="visible">
@@ -57,15 +57,15 @@
                     android:id="@+id/select_history_time"
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/ic_select_history_duration_yellow"/>
+                    android:background="@drawable/ic_action_access_time"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/speed_container_m"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/container_sel_veh_sel_dur"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
                 android:gravity="start"
@@ -73,15 +73,25 @@
                 <LinearLayout
                     android:id="@+id/speed_container_c"
                     android:layout_width="60dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:background="@drawable/speed_container_0">
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@drawable/speed_container_0"
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/vehicle_speed"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="16sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:text="Km/h"
                         android:textColor="@color/white"/>
                 </LinearLayout>
             </LinearLayout>

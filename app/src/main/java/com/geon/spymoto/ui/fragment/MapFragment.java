@@ -396,7 +396,7 @@ public class MapFragment extends BaseFragment implements
             vehicleSpeed_tv.setText("STOP");
             marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_stop));
         }else{
-            String spdV = String.valueOf(locationData.getSpeed()) + " km/h";
+            String spdV = String.valueOf(locationData.getSpeed());
             vehicleSpeed_tv.setText(spdV);
         }
 

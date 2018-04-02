@@ -58,10 +58,16 @@
             android:windowSoftInputMode="adjustResize|stateHidden">
 
         </activity>
-        <activity android:name=".ui.activity.TrackingDuration"
+        <activity
+            android:name=".ui.activity.TrackingDuration"
             android:screenOrientation="portrait"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog"
             android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
+        <activity android:name=".ui.activity.DateTimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ModalTheme">
 
         </activity>
 

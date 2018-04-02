@@ -48,39 +48,16 @@ public class SelectDurationFragment extends DialogFragment implements View.OnCli
     AppGlobal mGlobals;
 
 
-   CallFromSelectDurationFragment mCallback;
-    public interface CallFromSelectDurationFragment {
-        public void onMessageFormSelectDurationFragment(String message);
-    }
-
-
-
-
-    public static SelectDurationFragment newInstance(int num) {
-        SelectDurationFragment f = new SelectDurationFragment();
-        Bundle args = new Bundle();
-        args.putInt("num", num);
-        f.setArguments(args);
-        return f;
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mNum = getArguments().getInt("num");
         setStyle(STYLE_NORMAL,0);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
- //       params.width = ViewGroup.LayoutParams.MATCH_PARENT;
- //       params.height = ViewGroup.LayoutParams.MATCH_PARENT;
-  //      getDialog().getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
     }
-
-
-
 
 
     @Nullable
@@ -175,7 +152,6 @@ public class SelectDurationFragment extends DialogFragment implements View.OnCli
                     mView.findViewById(R.id.linerLayout_custom_picker_container).setVisibility(View.INVISIBLE);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here

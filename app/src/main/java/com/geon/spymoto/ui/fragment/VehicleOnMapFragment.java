@@ -23,6 +23,7 @@ import com.geon.spymoto.serviceapi.AllVehicleApi;
 import com.geon.spymoto.serviceapi.Callback;
 import com.geon.spymoto.serviceapi.HistoryDataApi;
 import com.geon.spymoto.serviceapi.LiveTrackingApi;
+import com.geon.spymoto.ui.activity.DateTimeActivity;
 import com.geon.spymoto.ui.activity.TrackingDuration;
 import com.geon.spymoto.ui.activity.VehicleSearchActivity;
 import com.google.android.gms.maps.model.LatLng;
@@ -116,8 +117,8 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 break;
 
             case R.id.select_history_time:
-                mMap.clear();
-                Intent mIntent = new Intent(getActivity(),TrackingDuration.class);
+                //mMap.clear();
+                Intent mIntent = new Intent(getActivity(),DateTimeActivity.class);
                 startActivityForResult(mIntent, 2);
                 break;
         }
