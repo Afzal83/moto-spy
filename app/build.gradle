@@ -29,8 +29,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-
-    compile 'com.mikhaellopez:circularimageview:3.0.2'
     compile 'com.google.maps.android:android-maps-utils:0.4.4'
 
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -41,4 +39,5 @@ dependencies {
 
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     compile 'com.github.citux:datetimepicker:0.3.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SpyMoto</string>
+    <string name="app_name">GeoTracker</string>
     <string name="title_activity_maps">Map</string>
 
 
@@ -11,7 +11,7 @@
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="contact_us">Contact_us</string>
+    <string name="contact_us">Contact Us</string>
 
 
     <string name="drawer_open">Open</string>
