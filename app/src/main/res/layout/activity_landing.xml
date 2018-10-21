@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splashBackgroundColor"
-    tools:context="com.geon.spymoto.ui.activity.LandingActivity">
+    tools:context="com.geon.lbs.ui.activity.LandingActivity">
 
 </LinearLayout>

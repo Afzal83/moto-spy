@@ -17,10 +17,8 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="about_us">Moto tracker is fully featured
-                            vehicle tracking service provider.Our aim is to Provide
-                            User with fully featued and comprehensive GPS tracking service .</string>
-
+    <string name="about_us">SpyMoto started its journey from 2014 and now it is one of the most popular brands as a location base service provider in Bangladesh. Clients are highly satisfied with SpyMoto for its rich features, promising services and pinpoint accuracy. \n\nSpyMoto is a service of Geon Technologies Ltd. which achieved its license of vehicle tracking system from BTRC on April 2014.\n\nYou are invited to feel the taste of  technology with SpyMoto.</string>
+    <string name="select_vehicle_header">Please Select a vehicle from list</string>
 
     <string name="service_of">We are a service of Geon Technologies Ltd.</string>
 

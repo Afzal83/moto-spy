@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:background="#efeff7"
+        android:background="@color/colorPrimary"
         android:gravity="center">
         <TextView
             android:id="@+id/vehiclNumer_select_vehicle_fr"

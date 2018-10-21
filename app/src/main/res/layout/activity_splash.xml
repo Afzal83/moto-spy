@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.geon.spymoto.ui.activity.SplashActivity"
-    android:background="@drawable/test_bg">
+    tools:context="com.geon.lbs.ui.activity.SplashActivity"
+    android:background="@color/colorPrimary">
 
 </LinearLayout>

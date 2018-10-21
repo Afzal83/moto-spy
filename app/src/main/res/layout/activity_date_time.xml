@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -18,19 +19,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last 1 h"
-                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
             <CheckBox
                 android:id="@+id/duration_2h"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last 2 h"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
             <CheckBox
                 android:id="@+id/duration_6h"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last 6 h"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
 
         </LinearLayout>
@@ -44,12 +50,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last 12 h"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
             <CheckBox
                 android:id="@+id/duration_24h"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Last 24 h"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
 
 
@@ -64,12 +74,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Today"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
             <CheckBox
                 android:id="@+id/duration_yesterday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yesterday"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
                 android:onClick="onCheckboxClicked"/>
 
 
@@ -80,85 +94,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_margin="16dp"
+        android:textColor="#bf0615"
+        android:buttonTint="#bf0615"
         android:text="Custom"
         android:onClick="onCheckboxClicked"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:padding="16dp"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/custom_duration_image_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:gravity="center">
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:layout_margin="25dp"
-                android:src="@mipmap/ic_launcher"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/custom_duration_clock_container_ll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <RelativeLayout
-                android:id="@+id/set_start_time_rl"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:paddingTop="10dp"
-                android:background="@drawable/button_background">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="start time"
-                    android:textSize="16dp"
-                    android:layout_centerHorizontal="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="25 jan 2017   12:20:00 pm"
-                    android:textSize="25dp"
-                    android:layout_centerInParent="true"/>
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/set_end_time_rl"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:paddingTop="10dp"
-                android:background="@drawable/button_background">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="End time"
-                    android:textSize="16dp"
-                    android:layout_centerHorizontal="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="25 jan 2017   12:20:00 pm"
-                    android:textSize="25dp"
-                    android:layout_centerInParent="true"/>
-            </RelativeLayout>
-            <Button
-                android:id="@+id/done_selection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:layout_gravity="center"
-                android:background="@drawable/login_btn_bgnd"
-                android:text="Done"/>
+                android:src="@drawable/img_calender"/>
         </LinearLayout>
     </RelativeLayout>
+    <Button
+        android:id="@+id/cancel_date_seletion"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_background"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18dp"/>
 
 
 </LinearLayout>
