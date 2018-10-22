@@ -55,7 +55,12 @@
         <service android:name=".services.DownLoadSingleVehicleStatusIntentService" />
         <service android:name=".services.DownLoadAllVehicleStatusIntentService" />
 
-        <activity android:name=".ui.activity.ContactUsActivity"></activity>
+        <activity android:name=".ui.activity.ContactUsActivity">
+
+        </activity>
+        <service
+            android:name="com.geon.lbs.services.GeocodeAddressIntentService"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5">
+        android:layout_weight="4">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,14 +16,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="12dp"
-        android:paddingStart="12dp"
+        android:paddingTop="20dp"
+        android:paddingStart="15dp"
         android:paddingEnd="12dp"
-        android:layout_weight="4">
+        android:layout_weight="5">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:text="@string/about_us"/>
 
@@ -43,14 +43,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:textColor="@color/colorPrimary"
                 android:text="Customar Care"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:textColor="#000000"
                 android:text="+8801710535037"/>
         </LinearLayout>
@@ -63,16 +63,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:textColor="@color/colorPrimary"
                 android:text="Sell Support "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="14dp"
+                android:textSize="16dp"
                 android:textColor="#000000"
                 android:text="+8801710535037"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
+

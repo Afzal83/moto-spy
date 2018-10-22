@@ -2,8 +2,13 @@ package com.geon.lbs.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +16,14 @@ import android.widget.Toast;
 
 import com.geon.lbs.AppGlobal;
 import com.geon.lbs.R;
+import com.geon.lbs.helper.Constants;
 import com.geon.lbs.helper.MapHelper;
 import com.geon.lbs.model.LocationData;
 import com.geon.lbs.model.NearestLocation;
 import com.geon.lbs.model.VehicleStatus;
+import com.geon.lbs.serviceapi.Callback;
+import com.geon.lbs.serviceapi.RequestLocationAddressApi;
+import com.geon.lbs.services.GeocodeAddressIntentService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;;
@@ -178,7 +187,8 @@ public class MapFragment extends BaseMapFragment implements
                 }
                 updateCurrentLocationInfo(locatonDataToPlot);
                 Log.e("selected vehicle : ",mGlobals.selectedVehicle);
-                //startTrackingOpearation();
+                sendReqForLocationAddress(locatonDataToPlot.getLatitudeDbl()
+                        ,locatonDataToPlot.getLontitudeDbl());
                 break;
             case TRACKING:
 //                currentMarker = marker;
@@ -424,8 +434,66 @@ public class MapFragment extends BaseMapFragment implements
                     .color(Color.GREEN));
         }
     }
+    public void sendReqForLocationAddress(double latitude,double longitude) {
 
+        Log.e("geocoading","lat: "+Double.toString(latitude));
+        Log.e("geocoading","long: "+Double.toString(longitude));
 
+        int fetchType = 2 ;
+        String locationAddress = "";
+        Intent intent = new Intent(getActivity(), GeocodeAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, new AddressResultReceiver(new Handler()));
+        intent.putExtra(Constants.FETCH_TYPE_EXTRA, fetchType);
+
+        if(fetchType == Constants.USE_ADDRESS_NAME) {
+            if(locationAddress.length() == 0) {
+                Toast.makeText(getActivity(), "Please enter an address name", Toast.LENGTH_LONG).show();
+                return;
+            }
+            intent.putExtra(Constants.LOCATION_NAME_DATA_EXTRA,locationAddress);
+        }
+        else {
+            Location location = new Location("");
+            location.setLatitude(latitude);
+            location.setLongitude(longitude);
+            intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        }
+        //progressBar.setVisibility(View.VISIBLE);
+        Log.e(TAG, "Starting Service");
+        getActivity().startService(intent);
+    }
+
+    class AddressResultReceiver extends ResultReceiver {
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, final Bundle resultData) {
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                final Address address = resultData.getParcelable(Constants.RESULT_ADDRESS);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //progressBar.setVisibility(View.INVISIBLE);
+                        //update user location
+                       // Log.e("geocoading","location paoa gese");
+                        String address = resultData.getString(Constants.RESULT_DATA_KEY);
+                        Log.e("geocoading","address in receiver : "+address);
+                    }
+                });
+            } else {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //progressBar.setVisibility(View.INVISIBLE);
+                        //update user location
+                        Log.e("geocoading","location painai");
+                    }
+                });
+            }
+        }
+    }
 //    void getLocationAddress(){
 //        LatLng latLng = new LatLng(currentMarkerLat,currentMarkerLong);
 //        if (Geocoder.isPresent()) {

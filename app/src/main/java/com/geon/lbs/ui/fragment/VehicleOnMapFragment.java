@@ -29,6 +29,7 @@ import com.geon.lbs.serviceapi.AllVehicleApi;
 import com.geon.lbs.serviceapi.Callback;
 import com.geon.lbs.serviceapi.HistoryDataApi;
 import com.geon.lbs.serviceapi.LiveTrackingApi;
+import com.geon.lbs.serviceapi.RequestLocationAddressApi;
 import com.geon.lbs.ui.activity.DateTimeActivity;
 import com.geon.lbs.ui.activity.VehicleSearchActivity;
 import com.geon.lbs.ui.customview.TransientDialog;
@@ -400,24 +401,35 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     }
 
     @Override
-    void updateCurrentLocationInfo(LocationData locatonDataToPlot){
+    void updateCurrentLocationInfo(LocationData locationDataToPlot){
 
        // Log.e("imei : ","imei " +locatonDataToPlot.getDevice_emei());
 
         trackingInfoContainer.setVisibility(View.VISIBLE);
         selectedVehicleInTrackingInfo.setText(mGlobals.selectedVehicle);
-        locationIntrackingInfo .setText("No location Found");
-        speedIntrackingInfo.setText(locatonDataToPlot.getSpeed());
-        if(locatonDataToPlot.getAc_status().contentEquals("1")){
+        locationIntrackingInfo .setText("");
+        speedIntrackingInfo.setText(locationDataToPlot.getSpeed());
+        if(locationDataToPlot.getAc_status().contentEquals("1")){
             acStatusIntrackingInfo.setText("ON");
         }else{
             acStatusIntrackingInfo.setText("OFF");
         }
-        if(locatonDataToPlot.getEngine_status().contentEquals("1")){
+        if(locationDataToPlot.getEngine_status().contentEquals("1")){
             engineStatusIntrackingInfo.setText("ON");
         }else{
             engineStatusIntrackingInfo.setText("OFF");
         }
+        new RequestLocationAddressApi(getActivity()).requestLocationAddress(locationDataToPlot.getLatitudeDbl()
+                ,locationDataToPlot.getLontitudeDbl(),new Callback<String>() {
+            @Override
+            public void onSuccess(String response) {
+                locationIntrackingInfo .setText(response);
+            }
+            @Override
+            public void onError(String s) {
+                locationIntrackingInfo .setText(s);
+            }
+        });
     }
     void updateHistoryInfo(double travelledDistance){
         String strDateToShow = "";
