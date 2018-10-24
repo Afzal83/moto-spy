@@ -34,7 +34,7 @@ public class DateTimeActivity extends AppCompatActivity implements DatePickerDia
     CheckBox durationOneHour,duarationTwoHour,durationSixHOur,durationTwelveHour,durationTwentyFourHour
             ,durationTodya,durationYesterDay,customDuration;
 
-
+    Button cancel ;
 
 
     int selectedCheckBox = 0;
@@ -161,6 +161,16 @@ public class DateTimeActivity extends AppCompatActivity implements DatePickerDia
         durationTodya = (CheckBox) findViewById(R.id.duration_today);
         durationYesterDay = (CheckBox) findViewById(R.id.duration_yesterday);
         customDuration = (CheckBox) findViewById(R.id.duration_custom);
+        cancel= findViewById(R.id.cancel_date_seletion);
+
+        cancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent returnIntent = new Intent();
+                DateTimeActivity.this.setResult(Activity.RESULT_CANCELED, returnIntent);
+                DateTimeActivity.this.finish();
+            }
+        });
 
     }
 

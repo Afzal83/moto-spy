@@ -102,6 +102,7 @@
                 android:textSize="12dp"
                 android:text="Total Vehicle"/>
             <TextView
+                android:id="@+id/no_of_total_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"

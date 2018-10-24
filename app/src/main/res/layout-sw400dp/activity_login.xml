@@ -32,12 +32,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:orientation="horizontal"
                     android:background="@drawable/login_et_bgnd">
                     <ImageView
-                        android:layout_width="45dp"
+                        android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:padding="14dp"
                         android:src="@drawable/ic_user"/>
@@ -61,12 +61,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:orientation="horizontal"
                     android:background="@drawable/login_et_bgnd">
                     <ImageView
-                        android:layout_width="45dp"
+                        android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:padding="14dp"
                         android:src="@drawable/ic_key"/>
@@ -91,8 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:text="@string/login"
@@ -103,8 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:text="@string/contact_us"
@@ -112,13 +112,13 @@
                     android:background="@drawable/contact_us_button_bg"/>
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="25dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/geon_logo"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:layout_height="2dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

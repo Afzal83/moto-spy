@@ -44,6 +44,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static com.geon.lbs.ui.fragment.BaseMapFragment.OPMode.HISTORY;
 import static com.geon.lbs.ui.fragment.BaseMapFragment.OPMode.HOME;
 import static com.geon.lbs.ui.fragment.BaseMapFragment.OPMode.TRACKING;
@@ -120,7 +121,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
 
             case R.id.menu_select_vehicle:
                 mMap.clear();
-                stopAllBackgroundService();
                 Intent i = new Intent(getActivity(),VehicleSearchActivity.class);
                 startActivityForResult(i, 1);
                 return true;
@@ -147,7 +147,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 startHomeOpearation();
         }
     }
-
     @Override
     public void onClick(View view) {
 
@@ -159,14 +158,15 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                 break;
             case R.id.track_all_vehicle:
+                Log.e("clicked","all_vehicle_function");
                 startHomeOpearation();
                 break;
             case R.id.start_tracking:
+                Log.e("clicked","star_tracking_option");
                 startTrackingOpearation();
                 break;
             case R.id.show_history:
                 mMap.clear();
-                stopAllBackgroundService();
                 Intent mIntent = new Intent(getActivity(),DateTimeActivity.class);
                 startActivityForResult(mIntent, 2);
                 break;
@@ -184,6 +184,14 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             else if (requestCode == 2) {
                 Log.e(TAG,"returned DateTimeActivity Activity ");
                 OpearationMode = HISTORY ;
+            }
+        }
+        else if(resultCode == RESULT_CANCELED){
+            if (requestCode == 1) {
+                Log.e(TAG,"returned fromVehicleSearch Activity ");
+            }
+            else if (requestCode == 2) {
+                Log.e(TAG,"no history time is selected  ");
             }
         }
     }
@@ -231,18 +239,13 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         historyInfoContainer.setVisibility(View.GONE);
         switch (OpearationMode){
             case HOME:
+                activity.getSupportActionBar().setTitle("Home");
                 break;
             case TRACKING:
                 activity.getSupportActionBar().setTitle("Tracking");
-                //trackingInfoContainer.setVisibility(View.VISIBLE);
-                //selectedVehicleInHistoryInfo.setText(mGlobals.selectedVehicle);
                 break;
             case HISTORY:
                 activity.getSupportActionBar().setTitle("History");
-                //historyInfoContainer.setVisibility(View.VISIBLE);
-                //selectedVehicleInHistoryInfo.setText(mGlobals.selectedVehicle);
-                //dateIntrackingInfo.setText("");
-                //travelledDistanceIntrackingInfo.setText("");
                 break;
             default:
                 break;
@@ -257,6 +260,10 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     /*Home opearation is from here*/
     @Override
     void startHomeOpearation(){
+        if(mGlobals.thread_for_allvehicle_api){
+            Log.e("theread","theread of all vehicle is active");
+            return;
+        }
         stopAllBackgroundService();
         if(null != mMap){
             mMap.clear();
@@ -264,6 +271,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         OpearationMode = HOME;
         setHeaderVisibility();
         //Log.e("calling ..","All vehicle status");
+        mGlobals.thread_for_allvehicle_api=true;
         vehicleApi.downLoadAllVehicleStatus(new Callback<List<VehicleStatus>>() {
             @Override
             public void onSuccess(List<VehicleStatus> response) {
@@ -298,19 +306,28 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     /*Live Tracking functionally from here */
     @Override
     void startTrackingOpearation(){
+
+        //Log.e("inFunction ","startTrackingOpearation");
+
+        if(mGlobals.thread_for_livetracking_api){
+            Log.e("Thread ","theread_for_livetr_active");
+            return;
+        }
         if(mGlobals.selectedVehicle.contentEquals("") || mGlobals.selectedVehicle.contentEquals("No Vehicel Selected")){
             transientDialog.showTransientDialog("","No vehicle is selected ");
             return;
         }
+        //Log.e("inFunction ","stopping bg threads");
         stopAllBackgroundService();
+        mMap.clear();
+
         OpearationMode = TRACKING ;
         setHeaderVisibility();
         pLat=0.0;
         pLong = 0.0;
-        mMap.clear();
-
         isFirstDataToPlot = true;
 
+        mGlobals.thread_for_livetracking_api=true;
         liveTrackingApi.getVehicleCurrentStatus(new Callback<VehicleStatus>() {
             @Override
             public void onSuccess(VehicleStatus response) {
@@ -375,7 +392,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                             travelDistanace = MapHelper.calculateDistance(response);
                         }
 
-                        double intervalF = response.size()/300 ;
+                        double intervalF = response.size()/350 ;
                         int interval = (intervalF>1.5) ? (int)intervalF:1;
                         List<LocationData> shortedLocationData = new ArrayList<>();
                         for(int i=0; i<response.size(); i=i+interval){

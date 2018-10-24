@@ -27,7 +27,7 @@ public class RequestLocationAddressApi {
     }
 
     public void requestLocationAddress(final double lat,final double lng,final Callback<String> callback){
-        mGlobals.thread_for_livetracking_api=true;
+
         Runnable runnableCodeToDownloadVehicleStatus = new Runnable() {
             @Override
             public void run() {
@@ -46,7 +46,7 @@ public class RequestLocationAddressApi {
             protected void onReceiveResult(int resultCode, final Bundle resultData) {
                 if (resultCode == Constants.SUCCESS_RESULT) {
                     String address = resultData.getString(Constants.RESULT_DATA_KEY);
-                    Log.e("geocoading","address in receiver : "+address);
+                    //Log.e("geocoading","address in receiver : "+address);
                     mCollback.onSuccess(address);
                 } else {
                     mCollback.onError("No Location Found");
@@ -54,8 +54,8 @@ public class RequestLocationAddressApi {
             }
         };
 
-        Log.e("geocoading","lat: "+Double.toString(lat));
-        Log.e("geocoading","long: "+Double.toString(lng));
+        //Log.e("geocoading","lat: "+Double.toString(lat));
+       // Log.e("geocoading","long: "+Double.toString(lng));
 
         int fetchType = 2 ;
         String locationAddress = "";
@@ -77,7 +77,7 @@ public class RequestLocationAddressApi {
             intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
         }
         //progressBar.setVisibility(View.VISIBLE);
-        Log.e("requestLocationapi", "Starting Service");
+        //Log.e("requestLocationapi", "Starting Service");
         mContext.startService(intent);
     }
 }

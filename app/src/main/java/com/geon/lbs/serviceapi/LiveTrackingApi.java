@@ -33,7 +33,7 @@ public class LiveTrackingApi {
     }
 
     public void getVehicleCurrentStatus(final Callback<VehicleStatus> callback){
-        mGlobals.thread_for_livetracking_api=true;
+
         runnableCodeToDownloadVehicleStatus = new Runnable() {
             @Override
             public void run() {

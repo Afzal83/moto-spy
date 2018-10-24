@@ -50,6 +50,7 @@ public class VehicleSearchActivity extends AppCompatActivity {
             listForUserVehicles.add(vehicle.getNumber_plate());
         }
         createSearchableListView(listForUserVehicles);
+
     }
     @Override
     public void onResume() {

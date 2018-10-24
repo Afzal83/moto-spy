@@ -20,15 +20,10 @@ public class BaseMapFragment extends Fragment {
     }
     OPMode OpearationMode;
 
-    void setHeaderVisibility(){
-
-    }
-
+    void setHeaderVisibility(){}
     void startHomeOpearation(){}
     void startTrackingOpearation(){}
     void startHistoryOpearation(){}
     void stopAllBackgroundService(){}
     void updateCurrentLocationInfo(LocationData locationData){};
-
-
 }

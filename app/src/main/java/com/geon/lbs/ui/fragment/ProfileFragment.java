@@ -19,7 +19,7 @@ import com.geon.lbs.R;
 public class ProfileFragment extends Fragment {
 
     View mView;
-    TextView userName,userPhone,userEmail;
+    TextView userName,userPhone,userEmail,totalVehicle,totalActiveVehicle,totalInactiveVehicle;
     AppGlobal appGlobal;
 
     @Nullable
@@ -47,12 +47,19 @@ public class ProfileFragment extends Fragment {
         userName = mView.findViewById(R.id.user_name);
         userPhone = mView.findViewById(R.id.user_phone);
         userEmail = mView.findViewById(R.id.user_email);
+        totalVehicle = mView.findViewById(R.id.no_of_total_vehicle);
+        totalActiveVehicle = mView.findViewById(R.id.no_of_active_vehicle);
+        totalInactiveVehicle = mView.findViewById(R.id.no_of_inactive_vehicle);
 
         String userNameStr = appGlobal.userFirsName + " "+appGlobal.userLastName;
         String userPhoneStr = appGlobal.userPhone;
         String userEmailStr = appGlobal.userEmail;
+
         userName.setText(userNameStr);
         userPhone.setText(userPhoneStr);
         userEmail.setText(userEmailStr);
+        totalVehicle.setText(appGlobal.geonVehicleList.size());
+        totalActiveVehicle.setText(appGlobal.geonVehicleList.size());
+        totalInactiveVehicle.setText("0");
     }
 }

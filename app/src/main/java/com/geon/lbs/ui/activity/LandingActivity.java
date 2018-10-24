@@ -26,10 +26,9 @@ public class LandingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.e("screen density===>>", "" + getResources().getDisplayMetrics().density);
-
         setContentView(R.layout.activity_landing);
+
+        //Log.e("screen density===>>", "" + getResources().getDisplayMetrics().density);
 
         appGlobal = ((AppGlobal) getApplicationContext());
         userApi = new UserApi(this);

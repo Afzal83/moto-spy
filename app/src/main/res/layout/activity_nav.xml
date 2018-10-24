@@ -21,7 +21,7 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_height="match_parent"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:background="@color/textColor_gray_00"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
@@ -36,14 +36,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:orientation="vertical">
-            <ImageView
-                android:id="@+id/footer_item_2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="15dp"
-                android:gravity="start|bottom"
-                android:src="@drawable/geon_logo" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:text="Powered By"
+                    android:gravity="center|end"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="10dp"/>
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/geon_logo"/>
+            </LinearLayout>
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 

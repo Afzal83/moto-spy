@@ -24,8 +24,8 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class AllVehicleApi {
-    Context mContext;
-    AppGlobal mGlobals;
+    private Context mContext;
+    private AppGlobal mGlobals;
 
     private Handler handler = new Handler();
     private Runnable runnableCodeToDownLoadAllVehicleStatus;
@@ -36,7 +36,6 @@ public class AllVehicleApi {
     }
 
     public void downLoadAllVehicleStatus(final Callback<List<VehicleStatus>> callback){
-        mGlobals.thread_for_allvehicle_api=true;
         runnableCodeToDownLoadAllVehicleStatus = new Runnable() {
             @Override
             public void run() {

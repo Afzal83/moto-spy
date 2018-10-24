@@ -1,6 +1,9 @@
 package com.geon.lbs.ui.activity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,10 +44,16 @@ public class SplashActivity extends AppCompatActivity {
     }
     void downLoadUserAllVehicle(){
 
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading Data ...");
+        dialog.setCancelable(false);
+        dialog.show();
+
         vehicleApi.getAllVehicleList(appGlobal.userName, appGlobal.userPassword, appGlobal.userCatagory
                 , new Callback<List<Vehicle>>() {
                     @Override
                     public void onSuccess(List<Vehicle> response) {
+                        dialog.dismiss();
                         appGlobal.deviceVehiclePair.clear();
                         appGlobal.geonVehicleList.clear();
                         appGlobal.geonVehicleList.addAll(response);
@@ -75,7 +84,17 @@ public class SplashActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(String s) {
-                        Log.e(TAG,"error to downLoad allvehiclelist");
+                        dialog.dismiss();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
+                        builder.setTitle("This is list choice dialog box")
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        SplashActivity.this.finish();
+                                        startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                                    }
+                                });
+                        builder.create();
                     }
                 });
     }
