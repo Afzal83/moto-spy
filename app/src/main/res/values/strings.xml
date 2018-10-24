@@ -17,13 +17,13 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="about_us">SpyMoto started its journey from 2014 and now it is one of the most popular brands as a location base service provider in Bangladesh. Clients are highly satisfied with SpyMoto for its rich features, promising services and pinpoint accuracy. \n\nSpyMoto is a service of Geon Technologies Ltd. which achieved its license of vehicle tracking system from BTRC on April 2014.\n\nYou are invited to feel the taste of  technology with SpyMoto.</string>
+    <string name="about_us">Geo Tracker started its journey from 2014 and now it is one of the most popular brands as a location base service provider in Bangladesh. Clients are highly satisfied with SpyMoto for its rich features, promising services and pinpoint accuracy. \n\nSpyMoto is a service of Geon Technologies Ltd. which achieved its license of vehicle tracking system from BTRC on April 2014.\n\nYou are invited to feel the taste of  technology with SpyMoto.</string>
     <string name="select_vehicle_header">Please Select a vehicle from list</string>
 
     <string name="service_of">We are a service of Geon Technologies Ltd.</string>
 
-    <string name="contact_one">123456789</string>
-    <string name="contact_two">123456789</string>
+    <string name="contact_cc">+88123456789</string>
+    <string name="contact_sell">+88123456789</string>
     <string name="customer_support">123456789</string>
 
 

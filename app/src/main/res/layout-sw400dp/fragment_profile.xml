@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/image_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_below="@id/app_bar"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
@@ -44,18 +44,18 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:gravity="start">
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_email"/>
             <TextView
                 android:id="@+id/user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary"
                 android:text="user@gmail.com"/>
 
@@ -64,19 +64,19 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="15dp"
             android:gravity="start">
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_local_phone"/>
             <TextView
                 android:id="@+id/user_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary"
                 android:text="+8801810324354"/>
 
@@ -84,8 +84,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="220dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="255dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:elevation="10dp"
@@ -99,13 +99,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:text="Total Vehicle"/>
             <TextView
                 android:id="@+id/no_of_total_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textColor="@color/colorPrimary"
                 android:text="200"/>
 
@@ -120,13 +120,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:text="Active Vehicle"/>
             <TextView
                 android:id="@+id/no_of_active_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textColor="@color/colorPrimary"
                 android:text="200"/>
 
@@ -140,13 +140,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:text="Inactive Vehicle"/>
             <TextView
                 android:id="@+id/no_of_inactive_vehicle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:textColor="@color/colorPrimary"
                 android:text="0"/>
 

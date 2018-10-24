@@ -17,7 +17,8 @@
             <CheckBox
                 android:id="@+id/duration_1h"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Last 1 h"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -25,7 +26,8 @@
             <CheckBox
                 android:id="@+id/duration_2h"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Last 2 h"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -33,7 +35,8 @@
             <CheckBox
                 android:id="@+id/duration_6h"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Last 6 h"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -48,7 +51,8 @@
             <CheckBox
                 android:id="@+id/duration_12h"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Last 12 h"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -56,7 +60,8 @@
             <CheckBox
                 android:id="@+id/duration_24h"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Last 24 h"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -72,7 +77,8 @@
             <CheckBox
                 android:id="@+id/duration_today"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Today"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -80,7 +86,8 @@
             <CheckBox
                 android:id="@+id/duration_yesterday"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="16dp"
                 android:text="Yesterday"
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
@@ -92,17 +99,18 @@
     <CheckBox
         android:id="@+id/duration_custom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_margin="16dp"
-        android:textColor="#bf0615"
-        android:buttonTint="#bf0615"
+        android:textSize="16dp"
+        android:textColor="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
         android:text="Custom"
         android:onClick="onCheckboxClicked"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_height="0dp"
+        android:layout_weight="8"
         android:padding="16dp"
         android:orientation="horizontal">
         <LinearLayout
@@ -111,8 +119,8 @@
             android:layout_height="match_parent"
             android:gravity="center">
             <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:layout_margin="25dp"
                 android:src="@drawable/img_calender"/>
         </LinearLayout>

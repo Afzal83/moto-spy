@@ -8,33 +8,31 @@
     android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="250dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:background="@drawable/login_top"/>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="60dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:text="Powered By"
             android:gravity="center|end"
             android:layout_marginEnd="10dp"
-            android:textSize="14dp"/>
+            android:textSize="10dp"/>
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="60dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
             android:src="@drawable/geon_logo"/>

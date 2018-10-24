@@ -7,58 +7,66 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:background="@color/colorPrimary"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:background="@color/colorPrimary">
         <TextView
             android:id="@+id/vehiclNumer_select_vehicle_fr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@null"
-            android:gravity="center"
-            android:textSize="25dp"
+            android:text="You have .."
+            android:textSize="35dp"
             android:textColor="#fff"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/listview_container"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="12"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
-        android:background="#edecec"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/select_vehicle_header"
+            android:textSize="35dp"
+            android:textColor="#fff"/>
         <!-- Editext for Search -->
 
         <EditText android:id="@+id/inputSearch_select_vehicle_fr"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textSize="25dp"
             android:gravity="center"
             android:background="@drawable/edit_text_style_for_vehicle_selection"
             android:hint="Search Vehicle..."
             android:focusable="true"
             android:inputType="textVisiblePassword"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/listview_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:background="#f7f7f7"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
         <!-- List View -->
         <ListView
             android:id="@+id/listview_select_vehicle_fr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/listview_rounded_bg"
-            android:divider="@color/white"
+            android:layout_height="wrap_content"
+            android:divider="#d6d6d6"
             android:dividerHeight="1dp"
             android:layout_margin="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1"
         android:background="#efeff7"
         android:gravity="center">
         <EditText

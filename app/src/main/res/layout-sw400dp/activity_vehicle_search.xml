@@ -9,32 +9,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="25dp"
+        android:padding="10dp"
         android:background="@color/colorPrimary">
         <TextView
             android:id="@+id/vehiclNumer_select_vehicle_fr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:text="You have "
-            android:textSize="25dp"
+            android:text="You have .."
+            android:textSize="18dp"
             android:textColor="#fff"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:text="@string/select_vehicle_header"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:textColor="#fff"/>
         <!-- Editext for Search -->
 
         <EditText android:id="@+id/inputSearch_select_vehicle_fr"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:textSize="25dp"
             android:gravity="center"
             android:background="@drawable/edit_text_style_for_vehicle_selection"
             android:hint="Search Vehicle..."
