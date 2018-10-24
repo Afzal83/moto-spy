@@ -5,7 +5,9 @@ import android.support.v4.app.Fragment;
 
 import com.geon.lbs.model.LocationData;
 import com.geon.lbs.model.NearestLocation;
+import com.google.android.gms.maps.model.Marker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,8 @@ import java.util.List;
  */
 
 public class BaseMapFragment extends Fragment {
+
+    List<Marker> allVehiclesMarkers = new ArrayList<>();
 
     enum OPMode
     {
@@ -26,4 +30,5 @@ public class BaseMapFragment extends Fragment {
     void startHistoryOpearation(){}
     void stopAllBackgroundService(){}
     void updateCurrentLocationInfo(LocationData locationData){};
+    void updateLocationAddress(LocationData locationDataToPlot){};
 }

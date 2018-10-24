@@ -48,7 +48,6 @@ public class NavActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav);
         mGlobals = ((AppGlobal)getApplicationContext());
 
-        setHistoryDefaultTime();
         gotoTrackingFragment();
         //getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new VehicleOnMapFragment()).commit();
         initNavigationDrawer();
@@ -181,12 +180,6 @@ public class NavActivity extends AppCompatActivity {
     void stopAllBackgroundService(){
         mGlobals.thread_for_allvehicle_api=false;
         mGlobals.thread_for_livetracking_api=false;
-    }
-    void setHistoryDefaultTime(){
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        mGlobals.endTime  = dt.format(calendar.getTime());
-        mGlobals.startTime = dt.format(TimeHelper.getStartTimeOfADay(calendar.getTime()));
     }
 
     private FragmentManager.OnBackStackChangedListener backStackListener =  new FragmentManager.OnBackStackChangedListener() {

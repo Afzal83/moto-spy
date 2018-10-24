@@ -41,35 +41,40 @@ public class LiveTrackingApi {
                 if(mContext==null){
                     return;
                 }
-
                 startDownLoadIntentService(callback);
-                Log.e("Handlers", "Called on main thread from single vehicle download status");
+                //Log.e("Handlers", "Called on main thread from single vehicle download status");
                 if(!mGlobals.thread_for_livetracking_api){
                     handler.removeCallbacks(runnableCodeToDownloadVehicleStatus);
                 }else{
-                    handler.postDelayed(this, 15000);
+                    handler.postDelayed(this, 10000);
                 }
             }
         };
         handler.post(runnableCodeToDownloadVehicleStatus);
     }
-    private void startDownLoadIntentService(final Callback mCollback){
+    private void startDownLoadIntentService(final Callback mCallback){
+
         ResultReceiver mReceiver=new ResultReceiver(new Handler()){
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 super.onReceiveResult(resultCode, resultData);
                 if (resultCode == RESULT_OK) {
-                    if(resultData == null){return;}
+                    if(resultData == null){
+                        mCallback.onError("error");
+                    }
+
                     VehicleStatus vehicleStatus = Parcels.unwrap(resultData.getParcelable("v_status"));
                     if(null == vehicleStatus){
-                        return;
+                        mCallback.onError("error");
                     }
-                    mCollback.onSuccess(vehicleStatus);
-                    Log.e("from vehicle status","successfull");
+                    //Log.e("from Tracking result","successfull");
+                    mCallback.onSuccess(vehicleStatus);
+
+
                 }
             }
         };
-        String vehicleImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
+        final String vehicleImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
         Intent i = new Intent(mContext,DownLoadSingleVehicleStatusIntentService.class);
         i.putExtra("selectedVehicle",vehicleImei);
         i.putExtra("receiver",mReceiver);

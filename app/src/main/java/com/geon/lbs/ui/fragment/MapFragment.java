@@ -179,27 +179,25 @@ public class MapFragment extends BaseMapFragment implements
             case HOME:
                 LocationData locatonDataToPlot = (LocationData) marker.getTag();
                 for (Map.Entry<String,String> entry : mGlobals.deviceVehiclePair.entrySet()) {
+
                     String imeiToCheck = entry.getValue();
                     if(imeiToCheck.contentEquals(locatonDataToPlot.getDevice_emei())){
                         mGlobals.selectedVehicle = entry.getKey();
                         break;
                     }
-                }
 
+                }
                 marker.setTitle( mGlobals.selectedVehicle);
                 marker.showInfoWindow();
 
                 updateCurrentLocationInfo(locatonDataToPlot);
+                updateLocationAddress(locatonDataToPlot);
                 //Log.e("selected vehicle : ",mGlobals.selectedVehicle);
                 break;
             case TRACKING:
-//                currentMarker = marker;
-//                LocationData locationData = (LocationData)marker.getTag();
-//                currentMarkerLat = locationData.getLatitudeDbl();
-//                currentMarkerLong = locationData.getLontitudeDbl();
-//                realAddress= "";
-//                nearestLocatoinList.clear();
-//                getLocationAddress();
+                currentMarker = marker;
+                LocationData locationData = (LocationData)marker.getTag();
+                updateLocationAddress(locationData);
                 break;
             case HISTORY:
                 break;
@@ -237,6 +235,7 @@ public class MapFragment extends BaseMapFragment implements
         Marker marker = mMap.addMarker(markerOptions);
         markerOptions.title(locationData.getRecord_date());
         marker.setTag(locationData);
+        allVehiclesMarkers.add(marker);
 
         plotData(locationData,marker);
     }
@@ -252,8 +251,8 @@ public class MapFragment extends BaseMapFragment implements
             if(pLat <= 0.0 || pLong <= 0.0){return;}
             Polyline line = mMap.addPolyline(new PolylineOptions()
                     .add(new LatLng(pLat, pLong), new LatLng(locationData.getLatitudeDbl(), locationData.getLontitudeDbl()))
-                    .width(5)
-                    .color(Color.GREEN));
+                    .width(8)
+                    .color(Color.parseColor("#24248f")));
 
             LatLng prePositionLatLong = new LatLng(pLat,pLong);
             double distance = MapHelper.CalculateDistance(prePositionLatLong,mLatlng);
@@ -375,8 +374,8 @@ public class MapFragment extends BaseMapFragment implements
                     .add(new LatLng(historyDataList.get(i-1).getLatitudeDbl()
                                     ,historyDataList.get(i-1).getLontitudeDbl()),
                             new LatLng(historyDataList.get(i).getLatitudeDbl(),historyDataList.get(i).getLontitudeDbl()))
-                    .width(5)
-                    .color(Color.GREEN));
+                    .width(8)
+                    .color(Color.parseColor("#24248f")));
         }
     }
 }

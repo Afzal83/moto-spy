@@ -20,7 +20,7 @@
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="550dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:background="@drawable/login_top"/>
