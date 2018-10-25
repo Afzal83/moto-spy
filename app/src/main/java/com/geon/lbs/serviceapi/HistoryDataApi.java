@@ -20,7 +20,6 @@ public class HistoryDataApi {
 
     public void downLoadHistoryData(String imei, String startTime, String endTime, final Callback<List<LocationData>> callback){
 
-
         RetroService mService = ApiUtils.getRetrofitService();
         mService.downloadHistoryData(imei,startTime,endTime).enqueue(new retrofit2.Callback<HistoryData>() {
 

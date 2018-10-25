@@ -208,7 +208,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 startTrackingOpearation();
                 break;
             case R.id.show_history:
-                clearMap();
                 Intent mIntent = new Intent(getActivity(),DateTimeActivity.class);
                 startActivityForResult(mIntent, 2);
                 break;
@@ -221,30 +220,32 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK){
             if (requestCode == 1) {
-                Log.e(TAG,"returned fromVehicleSearch Activity ");
+                //Log.e(TAG,"returned fromVehicleSearch Activity ");
                 switch (OpearationMode){
                     case HOME:
-                        Log.e(TAG,"returned fromVehicleSearch and mode = home ");
+                        //Log.e(TAG,"returned fromVehicleSearch and mode = home ");
                         String selectedDeviceImei = "";
                         for (Map.Entry<String,String> entry : mGlobals.deviceVehiclePair.entrySet()) {
 
                             String imeiToCheck = entry.getKey();
                             if(imeiToCheck.contentEquals(mGlobals.selectedVehicle)){
                                 selectedDeviceImei = entry.getValue();
-                                Log.e(TAG,"selectedDeviceImei: "+selectedDeviceImei);
+                                //Log.e(TAG,"selectedDeviceImei: "+selectedDeviceImei);
                                 break;
                             }
 
                         }
                         for(LocationData vStatus:allVehicleStatusListLocationDataStatus){
-                            Log.e(TAG,"selectedImei "+" "+vStatus.getDevice_emei());
+                            //Log.e(TAG,"selectedImei "+" "+vStatus.getDevice_emei());
                             if(vStatus.getDevice_emei().contentEquals(selectedDeviceImei)){
-                                Log.e(TAG,"selecteVehicleObj: "+" "+vStatus.getDevice_emei());
+                                //Log.e(TAG,"selecteVehicleObj: "+" "+vStatus.getDevice_emei());
                                 updateCurrentLocationInfo(vStatus);
                                 for(Marker m:allVehiclesMarkers){
                                     if (m.getTag().equals(vStatus)) {
                                         m.setTitle( mGlobals.selectedVehicle);
                                         m.showInfoWindow();
+                                        LatLng mLatlng = new LatLng(vStatus.getLatitudeDbl(), vStatus.getLontitudeDbl());
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatlng,16.50f));
                                     }
                                 }
                                 break;
@@ -256,16 +257,16 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 }
             }
             else if (requestCode == 2) {
-                Log.e(TAG,"returned DateTimeActivity Activity ");
+                //Log.e(TAG,"returned DateTimeActivity Activity ");
                 OpearationMode = HISTORY ;
             }
         }
         else if(resultCode == RESULT_CANCELED){
             if (requestCode == 1) {
-                Log.e(TAG,"returned fromVehicleSearch Activity ");
+                //Log.e(TAG,"returned fromVehicleSearch Activity ");
             }
             else if (requestCode == 2) {
-                Log.e(TAG,"no history time is selected  ");
+                //Log.e(TAG,"no history time is selected  ");
             }
         }
     }
@@ -294,7 +295,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         mGlobals.thread_for_livetracking_api=false;
     }
 
-    /*Home opearation is from here*/
     @Override
     void startHomeOpearation(){
 
@@ -314,10 +314,13 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             @Override
             public void onSuccess(List<VehicleStatus> response) {
 
-                if(!mGlobals.thread_for_allvehicle_api){return;}
+                if(!mGlobals.thread_for_allvehicle_api){
+                    return;
+                }
 
                 allVehicleStatusListLocationDataStatus.clear();
                 allVehiclesMarkers.clear();
+
                 for(int i=0; i<response.size(); i++){
 
                     LocationData locationData = new LocationData();
@@ -328,7 +331,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                     locationData.setEngine_status(response.get(i).getEngine_status());
                     locationData.setData_status(response.get(i).getData_status());
                     locationData.setDevice_emei(response.get(i).getDevice_emei());
-
 
                     allVehicleStatusListLocationDataStatus.add(locationData);
 
@@ -348,7 +350,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         });
     }
 
-    /*Live Tracking functionally from here */
     @Override
     void startTrackingOpearation(){
 
@@ -366,26 +367,28 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             transientDialog.showTransientDialog("","No vehicle is selected ");
             return;
         }
-        //Log.e("inFunction ","stopping bg threads");
+
         stopAllBackgroundService();
 
         OpearationMode = TRACKING ;
         setHeaderVisibility();
 
         mGlobals.thread_for_livetracking_api=true;
+
         liveTrackingApi.getVehicleCurrentStatus(new Callback<VehicleStatus>() {
             @Override
             public void onSuccess(VehicleStatus response) {
+
                 if(!mGlobals.thread_for_livetracking_api){
                     return;
                 }
+
                 String recentImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
                 if(!response.getDevice_emei().contentEquals(recentImei)){
                     Log.e(TAG,"not selected vehicles info");
+                    return;
                 }
 
-                //Log.e("device_emai ",response.getDevice_emei());
-                //Log.e("record_time ",response.getRecord_time());
                 LocationData locationData = new LocationData();
                 locationData.setLatitude(response.getLatitude());
                 locationData.setLongitude(response.getLongitude());
@@ -394,6 +397,11 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 locationData.setEngine_status(response.getEngine_status());
                 locationData.setAc_status(response.getAc_status());
                 locationData.setRecord_date(response.getRecord_time());
+
+                if(pLat == locationData.getLatitudeDbl() && pLong == locationData.getLontitudeDbl()){
+                    return;
+                }
+
                 setCurrentPosition(locationData);
                 updateCurrentLocationInfo(locationData);
             }
@@ -404,7 +412,6 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         });
     }
 
-    /*history opearation start from here*/
     @Override
     void startHistoryOpearation(){
 
@@ -423,8 +430,8 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
 
         String vehicleImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
 
-        final ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.StyledDialog);
-        dialog.setMessage("Loading History Data For "+mGlobals.selectedVehicle+"....");
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading History Data ....");
         dialog.setCancelable(false);
         dialog.show();
 
@@ -434,8 +441,8 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                     public void onSuccess(List<LocationData> response) {
 
                         dialog.dismiss();
-                        Log.e(TAG,"SUCCESS");
-                        Log.e(TAG,response.size()+"");
+                        //Log.e(TAG,"SUCCESS");
+                        //Log.e(TAG,response.size()+"");
 
                         double travelDistanace = 0;
                         if(response.size()>2){
@@ -449,8 +456,8 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                             shortedLocationData.add(response.get(i));
                         }
 
-                        Log.e("unshorted data size :",""+response.size());
-                        Log.e("shorted data size :"," "+shortedLocationData.size());
+                        //Log.e("unshorted data size :",""+response.size());
+                        //Log.e("shorted data size :"," "+shortedLocationData.size());
 
                         for(int i=0; i<shortedLocationData.size(); i++){
                             //Log.e("lat",response.get(i).getLatitude())
@@ -460,7 +467,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                     }
                     @Override
                     public void onError(String s) {
-                        Log.e(TAG,"eRRor");
+                        //Log.e(TAG,"eRRor");
                         dialog.dismiss();
                         updateHistoryInfo(0);
                     }
@@ -486,6 +493,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         }else{
             engineStatusIntrackingInfo.setText("OFF");
         }
+
     }
     void updateHistoryInfo(double travelledDistance){
         String strDateToShow = "";
@@ -502,7 +510,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             endDateToShow = output.format(endDateValue);
 
         }catch (Exception e){
-            Log.e(TAG,"exception happend to parse date time");
+            //Log.e(TAG,"exception happend to parse date time");
             e.printStackTrace();
         }
         String s = "History From "+strDateToShow+ " To "+ endDateToShow;
@@ -518,6 +526,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     }
     @Override
     void updateLocationAddress(LocationData locationDataToPlot){
+
         new RequestLocationAddressApi(getActivity()).requestLocationAddress(locationDataToPlot.getLatitudeDbl()
                 ,locationDataToPlot.getLontitudeDbl(),new Callback<String>() {
                     @Override

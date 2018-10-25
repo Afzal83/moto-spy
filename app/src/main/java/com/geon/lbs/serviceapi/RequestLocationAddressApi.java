@@ -40,16 +40,16 @@ public class RequestLocationAddressApi {
         };
         new Handler().post(runnableCodeToDownloadVehicleStatus);
     }
-    private void startLocationAddressService(double lat,double lng,final Callback mCollback){
+    private void startLocationAddressService(double lat,double lng,final Callback mCallback){
         ResultReceiver mReceiver=new ResultReceiver(new Handler()){
             @Override
             protected void onReceiveResult(int resultCode, final Bundle resultData) {
                 if (resultCode == Constants.SUCCESS_RESULT) {
                     String address = resultData.getString(Constants.RESULT_DATA_KEY);
                     //Log.e("geocoading","address in receiver : "+address);
-                    mCollback.onSuccess(address);
+                    mCallback.onSuccess(address);
                 } else {
-                    mCollback.onError("No Location Found");
+                    mCallback.onError("No Location Found");
                 }
             }
         };

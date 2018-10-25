@@ -69,14 +69,8 @@ public class MapFragment extends BaseMapFragment implements
     double pLat=0.0;
     double pLong = 0.0;
 
-    private double currentMarkerLat=0.0;
-    private double currentMarkerLong=0.0;
     private Marker currentMarker ;
 
-    String realAddress= "";
-    private List<NearestLocation> nearestLocatoinList = new ArrayList<>()  ;
-
-    ProgressDialog pDialog;
     View mView;
 
     @Override

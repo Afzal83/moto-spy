@@ -26,35 +26,49 @@ import static android.app.Activity.RESULT_OK;
 public class AllVehicleApi {
     private Context mContext;
     private AppGlobal mGlobals;
+    boolean isAllvehicleThereadRunnig = false ;
 
-    private Handler handler = new Handler();
+    private static Handler handlerForAllVehicleStatusDownload = null;
     private Runnable runnableCodeToDownLoadAllVehicleStatus;
 
     public AllVehicleApi(Context mContext){
         this.mContext = mContext;
         mGlobals = ((AppGlobal)mContext.getApplicationContext());
     }
+    private void createHandlerSingleton(){
+
+        if(handlerForAllVehicleStatusDownload == null){
+            handlerForAllVehicleStatusDownload = new Handler();
+        }
+    }
 
     public void downLoadAllVehicleStatus(final Callback<List<VehicleStatus>> callback){
+        createHandlerSingleton();
+        if(runnableCodeToDownLoadAllVehicleStatus != null){
+            handlerForAllVehicleStatusDownload.removeCallbacks(runnableCodeToDownLoadAllVehicleStatus);
+        }
         runnableCodeToDownLoadAllVehicleStatus = new Runnable() {
             @Override
             public void run() {
                 startDownLoadIntentService(callback);
                 Log.e("Handlers", "Called on main thread from download all vehicle status");
-                // Repeat this the same runnable code block again another 2 seconds
-                // 'this' is referencing the Runnable object
                 if(!mGlobals.thread_for_allvehicle_api){
-                    handler.removeCallbacks(runnableCodeToDownLoadAllVehicleStatus);
+                    handlerForAllVehicleStatusDownload.removeCallbacks(runnableCodeToDownLoadAllVehicleStatus);
                 }else{
-                    handler.postDelayed(this, 30000);
+                    handlerForAllVehicleStatusDownload.postDelayed(this, 30000);
                 }
             }
         };
-        handler.post(runnableCodeToDownLoadAllVehicleStatus);
+        if(isAllvehicleThereadRunnig){
+            handlerForAllVehicleStatusDownload.postDelayed(runnableCodeToDownLoadAllVehicleStatus, 30000);
+        }
+        else{
+            handlerForAllVehicleStatusDownload.post(runnableCodeToDownLoadAllVehicleStatus);
+        }
     }
     private String imeiCollectionOfAllVehicle(){
         String imeiOfAllVehicle = "";
-        ArrayList<String> arList = new ArrayList<String>();
+        ArrayList<String> arList = new ArrayList<>();
         for (Map.Entry<String,String> entry : mGlobals.deviceVehiclePair.entrySet()) {
             arList.add(entry.getValue());
         }
@@ -86,6 +100,7 @@ public class AllVehicleApi {
                         callback.onSuccess(mList);
                     }
                 }
+                isAllvehicleThereadRunnig = false;
             }
         };
 
@@ -93,5 +108,6 @@ public class AllVehicleApi {
         i.putExtra("receiver",mReceiver);
         i.putExtra("imeiOfAllVehicle",imeiCollectionOfAllVehicle());
         mContext.startService(i);
+        isAllvehicleThereadRunnig = true;
     }
 }

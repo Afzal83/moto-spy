@@ -23,17 +23,30 @@ public class LiveTrackingApi {
 
     private Context mContext;
     private AppGlobal mGlobals;
+    private boolean isTrackingThereadRunnig = false;
 
-    private Handler handler = new Handler();
+    //private Handler handler = new Handler();
     private Runnable runnableCodeToDownloadVehicleStatus;
+
+    private static Handler handlerSingleton = null;
 
     public LiveTrackingApi(Context mContext){
         this.mContext = mContext;
         mGlobals = ((AppGlobal)mContext.getApplicationContext());
     }
 
-    public void getVehicleCurrentStatus(final Callback<VehicleStatus> callback){
+    private void createHandlerSingleton(){
 
+        if(handlerSingleton == null){
+            handlerSingleton = new Handler();
+        }
+    }
+
+    public void getVehicleCurrentStatus(final Callback<VehicleStatus> callback){
+        createHandlerSingleton();
+        if(runnableCodeToDownloadVehicleStatus != null){
+            handlerSingleton.removeCallbacks(runnableCodeToDownloadVehicleStatus);
+        }
         runnableCodeToDownloadVehicleStatus = new Runnable() {
             @Override
             public void run() {
@@ -44,13 +57,20 @@ public class LiveTrackingApi {
                 startDownLoadIntentService(callback);
                 //Log.e("Handlers", "Called on main thread from single vehicle download status");
                 if(!mGlobals.thread_for_livetracking_api){
-                    handler.removeCallbacks(runnableCodeToDownloadVehicleStatus);
+                    handlerSingleton.removeCallbacks(runnableCodeToDownloadVehicleStatus);
                 }else{
-                    handler.postDelayed(this, 10000);
+                    handlerSingleton.postDelayed(this, 10000);
                 }
+
             }
         };
-        handler.post(runnableCodeToDownloadVehicleStatus);
+        if(isTrackingThereadRunnig){
+            handlerSingleton.postDelayed(runnableCodeToDownloadVehicleStatus, 10000);
+        }
+        else{
+            handlerSingleton.post(runnableCodeToDownloadVehicleStatus);
+        }
+
     }
     private void startDownLoadIntentService(final Callback mCallback){
 
@@ -72,6 +92,7 @@ public class LiveTrackingApi {
 
 
                 }
+                isTrackingThereadRunnig = false;
             }
         };
         final String vehicleImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
@@ -79,5 +100,6 @@ public class LiveTrackingApi {
         i.putExtra("selectedVehicle",vehicleImei);
         i.putExtra("receiver",mReceiver);
         mContext.startService(i);
+        isTrackingThereadRunnig =true;
     }
 }
