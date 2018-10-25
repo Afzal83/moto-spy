@@ -21,10 +21,11 @@
             android:textColor="@color/white"/>
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/location_image"
-            android:layout_width="20dp"
+            android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@id/vehicle_id_in_trackinginfo"
             android:layout_marginEnd="5dp"
+            android:scaleType="fitStart"
             android:src="@drawable/ic_gps_position"
             android:textColor="@color/white"/>
         <TextView
@@ -35,7 +36,7 @@
             android:layout_below="@id/vehicle_id_in_trackinginfo"
             android:layout_toEndOf="@id/location_image"
             android:singleLine="false"
-            android:textSize="12dp"
+            android:textSize="14dp"
             android:text="Mirpur-2,Dhaka adffds asdfadsfdas asfasdfasfasfa asfsafsaf asdf dfadfasdfas sadfas asasdf"
             android:textColor="@color/white"/>
 
@@ -43,11 +44,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp">
+        android:layout_marginStart="15dp">
         <LinearLayout
             android:id="@+id/ll_speed"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:orientation="vertical"
             android:gravity="start">
             <TextView
@@ -55,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="Engine"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/engine_status"
@@ -63,22 +64,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="ON"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <View
             android:id="@+id/div01"
-            android:layout_width="0.2px"
+            android:layout_width="0.2dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/ll_speed"
             android:background="@color/white"/>
         <LinearLayout
             android:id="@+id/ll_engine"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_toEndOf="@id/div01"
             android:orientation="vertical"
             android:gravity="center">
@@ -86,14 +87,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AC"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/ac_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Off"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
@@ -108,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="Speed"
                 android:gravity="center_horizontal|bottom"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="@color/white"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,7 +130,7 @@
                     android:layout_alignBaseline="@id/speed_status"
                     android:layout_marginLeft="5dp"
                     android:text="km/h"
-                    android:textSize="10dp"
+                    android:textSize="12dp"
                     android:textColor="@color/white"/>
             </LinearLayout>
         </LinearLayout>

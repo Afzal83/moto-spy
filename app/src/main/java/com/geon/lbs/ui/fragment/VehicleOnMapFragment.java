@@ -401,7 +401,9 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
                 if(pLat == locationData.getLatitudeDbl() && pLong == locationData.getLontitudeDbl()){
                     return;
                 }
-
+                if(isFirstDataToPlot){
+                    updateLocationAddress(locationData);
+                }
                 setCurrentPosition(locationData);
                 updateCurrentLocationInfo(locationData);
             }
@@ -481,7 +483,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
 
         trackingInfoContainer.setVisibility(View.VISIBLE);
         selectedVehicleInTrackingInfo.setText(mGlobals.selectedVehicle);
-        locationIntrackingInfo .setText("Click Marker For Vehicle Address");
+       // locationIntrackingInfo .setText("Click Marker For Vehicle Address");
         speedIntrackingInfo.setText(locationDataToPlot.getSpeed());
         if(locationDataToPlot.getAc_status().contentEquals("1")){
             acStatusIntrackingInfo.setText("ON");

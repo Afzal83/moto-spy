@@ -58,11 +58,11 @@
                 android:textAllCaps="false"/>
         </RelativeLayout>
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="0dp"
             android:orientation="horizontal"
             android:background="@drawable/map_button_bg">
             <LinearLayout
@@ -72,8 +72,8 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/track_all_vehicle"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/btn_home_gray"/>
             </LinearLayout>
             <LinearLayout
@@ -83,8 +83,8 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/start_tracking"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/btn_tracking_gray"/>
             </LinearLayout>
             <LinearLayout
@@ -94,8 +94,8 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/show_history"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/btn_history_gray"/>
             </LinearLayout>
             <LinearLayout
@@ -105,8 +105,8 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/clear_map"
-                    android:layout_width="30dp"
-                    android:layout_height="25dp"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/btn_clear_gray"/>
             </LinearLayout>
         </LinearLayout>

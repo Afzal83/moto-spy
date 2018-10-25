@@ -29,7 +29,8 @@
         app:itemIconTint="#2c4cb7"
         app:itemTextColor="@color/colorPrimary"
         app:itemBackground="@drawable/drawer_item_bg"
-        android:foregroundGravity="center_vertical" >
+        android:foregroundGravity="center_vertical"
+        app:theme="@style/NavigationTheme">
 
         <LinearLayout
             android:layout_width="match_parent"
