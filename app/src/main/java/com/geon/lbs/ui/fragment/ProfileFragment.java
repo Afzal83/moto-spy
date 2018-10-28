@@ -58,8 +58,8 @@ public class ProfileFragment extends Fragment {
         userName.setText(userNameStr);
         userPhone.setText(userPhoneStr);
         userEmail.setText(userEmailStr);
-        totalVehicle.setText(appGlobal.geonVehicleList.size());
-        totalActiveVehicle.setText(appGlobal.geonVehicleList.size());
+        totalVehicle.setText(appGlobal.geonVehicleList.size()+"");
+        totalActiveVehicle.setText(appGlobal.geonVehicleList.size()+"");
         totalInactiveVehicle.setText("0");
     }
 }

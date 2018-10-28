@@ -39,7 +39,7 @@ public class HistoryDataApi {
             @Override
             public void onFailure(Call<HistoryData> call, Throwable t) {
                 callback.onError("Error");
-                Log.e("retrofit","network error");
+                //Log.e("retrofit","network error");
             }
         });
     }

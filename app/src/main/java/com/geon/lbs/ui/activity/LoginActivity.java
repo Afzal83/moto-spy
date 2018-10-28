@@ -13,6 +13,7 @@ import com.geon.lbs.R;
 import com.geon.lbs.model.User;
 import com.geon.lbs.serviceapi.UserApi;
 import com.geon.lbs.serviceapi.Callback;
+import com.geon.lbs.ui.customview.TransientDialog;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,11 +25,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String userName = "";
     String userPass = "";
 
+    TransientDialog transientDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        transientDialog = new TransientDialog(this);
 
         userApi = new UserApi(this);
 
@@ -74,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onSuccess(User response) {
                 dialog.dismiss();
-                Log.e("login_response:","userFirstName"+response.getName_first());
+                //Log.e("login_response:","userFirstName"+response.getName_first());
                 response.setUserLoogedIn(true);
                 response.setUserPassword(userPass);
                 userApi.saveUserInfoToSharedPreference(response);
@@ -85,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onError(String s) {
                 dialog.dismiss();
-                Log.e("login_response:","login Error");
+                transientDialog.showTransientDialog("","Login error.. ");
             }
         });
     }

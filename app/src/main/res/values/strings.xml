@@ -35,7 +35,7 @@
     <string name="live_tracking">Tracking</string>
     <string name="show_shistory">History</string>
     <string name="clear_map">Clear</string>
-
+    <string name="location_demo_address">""</string>
 
     <string-array name="select_duration_array">
         <item>Last 1 hour</item>

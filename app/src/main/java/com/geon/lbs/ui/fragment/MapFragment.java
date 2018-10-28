@@ -76,7 +76,7 @@ public class MapFragment extends BaseMapFragment implements
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.e(TAG, "onAttach: context: " + context.toString());
+        //Log.e(TAG, "onAttach: context: " + context.toString());
     }
 
 //    @Override
@@ -165,7 +165,7 @@ public class MapFragment extends BaseMapFragment implements
     @Override
     public boolean onMarkerClick(Marker marker){
 
-        Log.e("markerclicked","markerclicked");
+        //Log.e("markerclicked","markerclicked");
         if(marker == null){return  true;}
         mMap.getUiSettings().setMapToolbarEnabled(true);
 
@@ -201,7 +201,7 @@ public class MapFragment extends BaseMapFragment implements
         return true;
     }
     public boolean checkPlayServices() {
-        Log.e("google api=========","ase google api");
+        //Log.e("google api=========","ase google api");
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity());
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
@@ -250,8 +250,8 @@ public class MapFragment extends BaseMapFragment implements
 
             LatLng prePositionLatLong = new LatLng(pLat,pLong);
             double distance = MapHelper.CalculateDistance(prePositionLatLong,mLatlng);
-            Log.e("....DISTANCE....","D:"+distance);
-            if(distance > 0.15){
+            //Log.e("....DISTANCE....","D:"+distance);
+            if(distance > 0.12){
                 MarkerOptions arroMarkerOption = new MarkerOptions();
                 LatLng midLatlng = MapHelper.midPoint(pLat,pLong,locationData.getLatitudeDbl(), locationData.getLontitudeDbl());
                 arroMarkerOption.position(midLatlng);
@@ -325,7 +325,7 @@ public class MapFragment extends BaseMapFragment implements
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(mLatlng);
         markerOptions.title(locatonDataToPlot.getRecord_time());
-        Log.e("Location data time",locatonDataToPlot.getRecord_time());
+        //Log.e("Location data time",locatonDataToPlot.getRecord_time());
 
         if(i == (historyDataList.size()-1)){
             Marker marker = mMap.addMarker(markerOptions);

@@ -221,37 +221,43 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         if(resultCode == Activity.RESULT_OK){
             if (requestCode == 1) {
                 //Log.e(TAG,"returned fromVehicleSearch Activity ");
+                String selectedDeviceImei = "";
+                LocationData selectedLocationData = new LocationData() ;
+                boolean hasLocationDate = false;
+
+                for (Map.Entry<String,String> entry : mGlobals.deviceVehiclePair.entrySet()) {
+                    String imeiToCheck = entry.getKey();
+                    if(imeiToCheck.contentEquals(mGlobals.selectedVehicle)){
+                        selectedDeviceImei = entry.getValue();
+                        //Log.e(TAG,"selectedDeviceImei: "+selectedDeviceImei);
+                        break;
+                    }
+                }
+                for(LocationData vStatus:allVehicleStatusListLocationDataStatus){
+                    //Log.e(TAG,"selectedImei "+" "+vStatus.getDevice_emei());
+                    if(vStatus.getDevice_emei().contentEquals(selectedDeviceImei)){
+                        //Log.e(TAG,"selecteVehicleObj: "+" "+vStatus.getDevice_emei());
+                        selectedLocationData = vStatus;
+                        hasLocationDate = true;
+                        break;
+                    }
+                }
+                if(hasLocationDate){
+                    updateCurrentLocationInfo(selectedLocationData);
+                    updateLocationAddress(selectedLocationData);
+                }
                 switch (OpearationMode){
                     case HOME:
-                        //Log.e(TAG,"returned fromVehicleSearch and mode = home ");
-                        String selectedDeviceImei = "";
-                        for (Map.Entry<String,String> entry : mGlobals.deviceVehiclePair.entrySet()) {
-
-                            String imeiToCheck = entry.getKey();
-                            if(imeiToCheck.contentEquals(mGlobals.selectedVehicle)){
-                                selectedDeviceImei = entry.getValue();
-                                //Log.e(TAG,"selectedDeviceImei: "+selectedDeviceImei);
-                                break;
-                            }
-
-                        }
-                        for(LocationData vStatus:allVehicleStatusListLocationDataStatus){
-                            //Log.e(TAG,"selectedImei "+" "+vStatus.getDevice_emei());
-                            if(vStatus.getDevice_emei().contentEquals(selectedDeviceImei)){
-                                //Log.e(TAG,"selecteVehicleObj: "+" "+vStatus.getDevice_emei());
-                                updateCurrentLocationInfo(vStatus);
-                                for(Marker m:allVehiclesMarkers){
-                                    if (m.getTag().equals(vStatus)) {
-                                        m.setTitle( mGlobals.selectedVehicle);
-                                        m.showInfoWindow();
-                                        LatLng mLatlng = new LatLng(vStatus.getLatitudeDbl(), vStatus.getLontitudeDbl());
-                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatlng,16.50f));
-                                    }
+                        if(hasLocationDate){
+                            for(Marker m:allVehiclesMarkers){
+                                if (m.getTag().equals(selectedLocationData)) {
+                                    m.setTitle( mGlobals.selectedVehicle);
+                                    m.showInfoWindow();
+                                    LatLng mLatlng = new LatLng(selectedLocationData.getLatitudeDbl(), selectedLocationData.getLontitudeDbl());
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mLatlng,16.50f));
                                 }
-                                break;
                             }
                         }
-                        break;
                     case TRACKING:
                         break;
                 }
@@ -294,14 +300,23 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
         mGlobals.thread_for_allvehicle_api=false;
         mGlobals.thread_for_livetracking_api=false;
     }
+    void setButtonBackgroundNotSelected(){
+        clearMap.setBackgroundResource(R.drawable.btn_clear_gray);
+        showHistory.setBackgroundResource(R.drawable.btn_history_gray);
+        startTracking.setBackgroundResource(R.drawable.btn_tracking_gray);
+        home.setBackgroundResource(R.drawable.btn_home_gray);
+    }
 
     @Override
     void startHomeOpearation(){
 
+        setButtonBackgroundNotSelected();
+        home.setBackgroundResource(R.drawable.btn_home_selected);
         if(mGlobals.thread_for_allvehicle_api){
             Log.e("theread","theread of all vehicle is active");
             return;
         }
+
         stopAllBackgroundService();
         if(null != mMap){
             clearMap();
@@ -345,7 +360,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             }
             @Override
             public void onError(String s) {
-                Log.e(TAG,"ERROR");
+                //Log.e(TAG,"ERROR");
             }
         });
     }
@@ -353,18 +368,19 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     @Override
     void startTrackingOpearation(){
 
-        //Log.e("inFunction ","startTrackingOpearation");
+        if(mGlobals.selectedVehicle.contentEquals("") || mGlobals.selectedVehicle.contentEquals("No Vehicel Selected")){
+            transientDialog.showTransientDialog("","No vehicle is selected ");
+            return;
+        }
+        setButtonBackgroundNotSelected();
+        startTracking.setBackgroundResource(R.drawable.btn_tracking_selected);
         clearMap();
         pLat=0.0;
         pLong = 0.0;
         isFirstDataToPlot = true;
 
         if(mGlobals.thread_for_livetracking_api){
-            Log.e("Thread ","theread_for_livetr_active");
-            return;
-        }
-        if(mGlobals.selectedVehicle.contentEquals("") || mGlobals.selectedVehicle.contentEquals("No Vehicel Selected")){
-            transientDialog.showTransientDialog("","No vehicle is selected ");
+            //Log.e("Thread ","theread_for_livetr_active");
             return;
         }
 
@@ -385,7 +401,7 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
 
                 String recentImei = mGlobals.deviceVehiclePair.get(mGlobals.selectedVehicle);
                 if(!response.getDevice_emei().contentEquals(recentImei)){
-                    Log.e(TAG,"not selected vehicles info");
+                    //Log.e(TAG,"not selected vehicles info");
                     return;
                 }
 
@@ -423,6 +439,8 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
             clearMap();
         }
         setHeaderVisibility();
+        setButtonBackgroundNotSelected();
+        showHistory.setBackgroundResource(R.drawable.btn_history_selected);
 
         if(mGlobals.selectedVehicle.contentEquals("")
                 || mGlobals.selectedVehicle.contains("No Vehicel Selected")){
@@ -529,21 +547,26 @@ public class VehicleOnMapFragment extends MapFragment implements View.OnClickLis
     @Override
     void updateLocationAddress(LocationData locationDataToPlot){
 
-        new RequestLocationAddressApi(getActivity()).requestLocationAddress(locationDataToPlot.getLatitudeDbl()
-                ,locationDataToPlot.getLontitudeDbl(),new Callback<String>() {
-                    @Override
-                    public void onSuccess(String response) {
-                        locationIntrackingInfo .setText(response);
-                    }
-                    @Override
-                    public void onError(String s) {
-                        locationIntrackingInfo .setText(s);
-                    }
-                });
+        try{
+            new RequestLocationAddressApi(getActivity()).requestLocationAddress(locationDataToPlot.getLatitudeDbl()
+                    ,locationDataToPlot.getLontitudeDbl(),new Callback<String>() {
+                        @Override
+                        public void onSuccess(String response) {
+                            locationIntrackingInfo .setText(response);
+                        }
+                        @Override
+                        public void onError(String s) {
+                            locationIntrackingInfo .setText(s);
+                        }
+                    });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
     void clearMap(){
+        clearMap.setBackgroundResource(R.drawable.btn_clear_selected);
         mMap.clear();
-        allVehiclesMarkers.clear();
+        clearMap.setBackgroundResource(R.drawable.btn_clear_gray);
     }
 }

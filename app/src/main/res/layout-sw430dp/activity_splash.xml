@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.geon.lbs.ui.activity.LoginActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:background="@drawable/login_top"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Powered By"
+            android:gravity="center|end"
+            android:layout_marginEnd="10dp"
+            android:textSize="14dp"/>
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/geon_logo"/>
+    </LinearLayout>
+</RelativeLayout>

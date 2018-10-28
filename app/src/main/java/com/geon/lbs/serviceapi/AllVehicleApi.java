@@ -55,16 +55,12 @@ public class AllVehicleApi {
                 if(!mGlobals.thread_for_allvehicle_api){
                     handlerForAllVehicleStatusDownload.removeCallbacks(runnableCodeToDownLoadAllVehicleStatus);
                 }else{
-                    handlerForAllVehicleStatusDownload.postDelayed(this, 30000);
+                    handlerForAllVehicleStatusDownload.postDelayed(this, 15000);
                 }
             }
         };
-        if(isAllvehicleThereadRunnig){
-            handlerForAllVehicleStatusDownload.postDelayed(runnableCodeToDownLoadAllVehicleStatus, 30000);
-        }
-        else{
-            handlerForAllVehicleStatusDownload.post(runnableCodeToDownLoadAllVehicleStatus);
-        }
+        handlerForAllVehicleStatusDownload.post(runnableCodeToDownLoadAllVehicleStatus);
+
     }
     private String imeiCollectionOfAllVehicle(){
         String imeiOfAllVehicle = "";
@@ -81,7 +77,7 @@ public class AllVehicleApi {
                     imeiOfAllVehicle += arList.get(i) + "|";
                 }
             }
-            Log.e("allImei", "All Imei:" + imeiOfAllVehicle);
+            //Log.e("allImei", "All Imei:" + imeiOfAllVehicle);
         }
         return imeiOfAllVehicle;
     }
@@ -91,16 +87,19 @@ public class AllVehicleApi {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 super.onReceiveResult(resultCode, resultData);
+
+                isAllvehicleThereadRunnig = false;
+
                 if (resultCode == RESULT_OK) {
                     //Log.e("result from download","successfull");
                     ArrayList<VehicleStatus> mList = Parcels.unwrap(resultData.getParcelable("vehicle_status_list"));
                     if(null == mList){
-                        Log.e("service_return","got null allvehicle list");
+                        //Log.e("service_return","got null allvehicle list");
                     }else{
                         callback.onSuccess(mList);
                     }
                 }
-                isAllvehicleThereadRunnig = false;
+
             }
         };
 
